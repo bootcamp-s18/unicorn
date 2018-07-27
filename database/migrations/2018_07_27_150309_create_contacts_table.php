@@ -27,7 +27,7 @@ class CreateContactsTable extends Migration
             $table->smallInteger('work_phone')->nullable();
             $table->smallInteger('cell_phone')->nullable();
             $table->dateTime('birth_date')->nullable();
-            $table->timestamps();
+            $table->binary('image')->nullable();
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
