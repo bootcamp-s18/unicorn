@@ -26,12 +26,12 @@ class CreateContactsTable extends Migration
             $table->smallInteger('home_phone')->nullable();
             $table->smallInteger('work_phone')->nullable();
             $table->smallInteger('cell_phone')->nullable();
+            $table->string('address')->nullable();
             $table->dateTime('birth_date')->nullable();
             $table->binary('image')->nullable();
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
-
         });
     }
 
