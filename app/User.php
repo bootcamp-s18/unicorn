@@ -26,4 +26,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function contacts_created()
+     {
+         return $this->hasMany('App\Contact', 'creator_id');
+     }
 }
