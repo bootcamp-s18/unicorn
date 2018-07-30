@@ -126,7 +126,7 @@ class ContactController extends Controller
 
           // add data
           if ($contact->organization) $vcard->addOrganization('organization');
-          if ($contact->person_email) $vcard->addEmail('personal_email');
+          if ($contact->personal_email) $vcard->addEmail('personal_email');
           if ($contact->work_email) $vcard->addEmail('work_email');
           if ($contact->home_email) $vcard->addPhoneNumber('home_phone', 'PREF;HOME');
           if ($contact->cell_phone) $vcard->addPhoneNumber('cell_phone', 'PREF;CELL');
