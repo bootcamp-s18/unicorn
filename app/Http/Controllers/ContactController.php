@@ -19,7 +19,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $flashcards = \App\Contact::orderBy('last_name')->where('creator_id', '=', auth()->user()->id)->get();
+        $contacts = \App\Contact::orderBy('last_name')->where('creator_id', '=', auth()->user()->id)->get();
         return view('home', compact('contact'));
     }
 
@@ -42,12 +42,12 @@ class ContactController extends Controller
     public function store(Request $request)
     {
       $validatedData = $request->validate([
-          'name' => 'required',
+          'lastname' => 'required',
+          'firstname' => 'required',
       ]);
 
       $contact->first_name = $request->input('firstName');
       $contact->last_name = $request->input('lastName');
-      $contact->name = $request->input('name');
       $contact->organization = $request->input('organization');
       $contact->personal_email = $request->input('personalEmail');
       $contact->work_email = $request->input('workEmail');
@@ -116,7 +116,6 @@ class ContactController extends Controller
           if ( old('_token') ) {
             $contact->first_name = old('firstName');
             $contact->last_name = old('lastName');
-            $contact->name = old('name');
             $contact->organization = old('organization');
             $contact->personal_email = old('personalEmail');
             $contact->work_email = old('workEmail');
@@ -141,12 +140,12 @@ class ContactController extends Controller
     public function update(Request $request, $id)
     {
       $validatedData = $request->validate([
-          'name' => 'required',
+          'lastName' => 'required',
+          'firstName' => 'required',
       ]);
       $contact = \App\Contacts::find($id);
       $contact->first_name = $request->input('firstName');
       $contact->last_name = $request->input('lastName');
-      $contact->name = $request->input('name');
       $contact->organization = $request->input('organization');
       $contact->personal_email = $request->input('personalEmail');
       $contact->work_email = $request->input('workEmail');
