@@ -12,8 +12,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    @component('layouts.inputs')
-                    @endcomponent
+                    
                     <card-grid></card-grid>
                 </div>
             </div>

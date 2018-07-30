@@ -47363,10 +47363,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+
+    props: ['contactssData'],
+    data: function data() {
+        return {
+            searchString: '',
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        };
+    },
     mounted: function mounted() {
         console.log('Component mounted.');
+    },
+
+    computed: {
+        filteredContacts: function filteredContacts() {
+            var contact_array = this.contactsData;
+            var search_string = this.searchString.toLowerCase();
+            if (!search_string) {
+                return contacts_array;
+            }
+            contacts_array = contacts_array.filter(function (item) {
+                if (item.name.toLowerCase().indexOf(search_string) !== -1) {
+                    return item;
+                }
+            });
+            return contacts_array;
+        }
     }
 });
 
@@ -47374,99 +47401,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "list-unstyled" }, [
-      _c("li", { staticClass: "media border p-3" }, [
-        _c("img", {
-          staticClass: "mr-3 rounded-circle",
-          staticStyle: { width: "60px", height: "60px" },
-          attrs: { src: "/images/christianRock.png", alt: "placeholder" }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "media-body" }, [
-          _c("h4", [
-            _vm._v("John Doe "),
-            _c("small", [_c("i", [_vm._v("Posted on February 19, 2016")])])
-          ]),
-          _vm._v(" "),
-          _c("p", [_vm._v("Lorem ipsum...")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "media" }, [
-        _c("img", {
-          staticClass: "mr-3 rounded-circle",
-          staticStyle: { height: "128px" },
-          attrs: {
-            src: "/images/christianRock.png",
-            alt: "Generic placeholder image"
-          }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "media-body" }, [
-          _c("h5", { staticClass: "mt-0 mb-1" }, [
-            _vm._v("List-based media object")
-          ]),
-          _vm._v(
-            "\n            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n        "
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "media my-4" }, [
-        _c("img", {
-          staticClass: "mr-3",
-          staticStyle: { height: "128px" },
-          attrs: {
-            src: "/images/sharkVision2.jpg",
-            alt: "Generic placeholder image"
-          }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "media-body" }, [
-          _c("h5", { staticClass: "mt-0 mb-1" }, [
-            _vm._v("List-based media object")
-          ]),
-          _vm._v(
-            "\n            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n        "
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "media" }, [
-        _c("img", {
-          staticClass: "mr-3",
-          staticStyle: { height: "128px" },
-          attrs: {
-            src: "/images/VinDimitri.JPG",
-            alt: "Generic placeholder image"
-          }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "media-body" }, [
-          _c("h5", { staticClass: "mt-0 mb-1" }, [
-            _vm._v("List-based media object")
-          ]),
-          _vm._v(
-            "\n            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n        "
-          )
-        ])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
+module.exports={render:function(){},staticRenderFns:[]}
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
