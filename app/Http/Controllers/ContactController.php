@@ -20,7 +20,7 @@ class ContactController extends Controller
     public function index()
     {
         $flashcards = \App\Contact::orderBy('last_name')->where('creator_id', '=', auth()->user()->id)->get();
-        return view('/', compact('contact'));
+        return view('home', compact('contact'));
     }
 
     /**
@@ -41,7 +41,25 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $validatedData = $request->validate([
+          'name' => 'required',
+      ]);
+
+      $contact->first_name = $request->input('firstName');
+      $contact->last_name = $request->input('lastName');
+      $contact->name = $request->input('name');
+      $contact->organization = $request->input('organization');
+      $contact->personal_email = $request->input('personalEmail');
+      $contact->work_email = $request->input('workEmail');
+      $contact->home_phone = $request->input('homePhone');
+      $contact->work_phone = $request->input('workPhone');
+      $contact->cell_phone = $request->input('cellPhone');
+      $contact->birth_date = $request->input('birthDate');
+      // $contact->image = $request->input('image');
+      $contact->creator_id = \Auth::user()->id;
+      $contact->save();
+      // $request->session()->flash('status', 'Contact created!');
+      return redirect()->route('home');
     }
 
     /**
@@ -106,11 +124,11 @@ class ContactController extends Controller
             $contact->work_phone = old('workPhone');
             $contact->cell_phone = old('cellPhone');
             $contact->birth_date = old('birthDate');
-            $contact->image = old('image');
+            // $contact->image = old('image');
       }
 
           $contact = \App\Contacts::find($id);
-          return view('edit', compact('contact'));
+          return view('home', compact('contact'));
     }
 
     /**
@@ -122,7 +140,24 @@ class ContactController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $validatedData = $request->validate([
+          'name' => 'required',
+      ]);
+      $contact = \App\Contacts::find($id);
+      $contact->first_name = $request->input('firstName');
+      $contact->last_name = $request->input('lastName');
+      $contact->name = $request->input('name');
+      $contact->organization = $request->input('organization');
+      $contact->personal_email = $request->input('personalEmail');
+      $contact->work_email = $request->input('workEmail');
+      $contact->home_phone = $request->input('homePhone');
+      $contact->work_phone = $request->input('workPhone');
+      $contact->cell_phone = $request->input('cellPhone');
+      $contact->birth_date = $request->input('birthDate');
+      // $contact->image = $request->input('image');
+      $contact->save();
+      // $request->session()->flash('status', 'Contact created!');
+      return redirect()->route('home');
     }
 
     /**
