@@ -47407,7 +47407,10 @@ var staticRenderFns = [
         _c("img", {
           staticClass: "mr-3 rounded-circle",
           staticStyle: { height: "128px" },
-          attrs: { src: "", alt: "Generic placeholder image" }
+          attrs: {
+            src: "/images/christianRock.png",
+            alt: "Generic placeholder image"
+          }
         }),
         _vm._v(" "),
         _c("div", { staticClass: "media-body" }, [
