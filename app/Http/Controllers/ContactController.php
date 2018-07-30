@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use JeroenDesloovere\VCard\VCard;
+use JeroenDesloovere\VCard\VCardParser;
 use Illuminate\Http\Request;
+
 
 class ContactController extends Controller
 {
@@ -19,7 +21,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = \App\Contact::orderBy('last_name')->where('creator_id', '=', auth()->user()->id)->get();
+        $contact = \App\Contact::orderBy('last_name')->where('creator_id', '=', auth()->user()->id)->get();
         return view('home', compact('contact'));
     }
 
@@ -42,25 +44,65 @@ class ContactController extends Controller
     public function store(Request $request)
     {
       $validatedData = $request->validate([
-          'lastname' => 'required',
-          'firstname' => 'required',
+          'last_name' => 'required',
+          'first_name' => 'required',
       ]);
 
-      $contact->first_name = $request->input('firstName');
-      $contact->last_name = $request->input('lastName');
-      $contact->organization = $request->input('organization');
-      $contact->personal_email = $request->input('personalEmail');
-      $contact->work_email = $request->input('workEmail');
-      $contact->home_phone = $request->input('homePhone');
-      $contact->work_phone = $request->input('workPhone');
-      $contact->cell_phone = $request->input('cellPhone');
-      $contact->birth_date = $request->input('birthDate');
-      // $contact->image = $request->input('image');
-      $contact->creator_id = \Auth::user()->id;
-      $contact->save();
-      // $request->session()->flash('status', 'Contact created!');
-      return redirect()->route('home');
+      if(count($request->files) != 0){
+        $file = $request->file('vCardFile');
+        $file->content = file_get_contents($file->getRealPath());
+        $parser = new VCardParser($file->content);
+        $vCard = $parser->getCardAtIndex(0);
+        $contact->firstname = $vCard->firstname;
+
+        if($vCard->lastname) {
+          $contact->lastname = $vCard->lastname;
+        }
+        if(isset($vCard->organization)) {
+          $contact->organization = $vCard->organization;
+        }
+        if(isset($vCard->home_phone)) {
+          $contact->phone = current(current($vCard->home_phone));
+        }
+        if(isset($vCard->cell_phone)) {
+          $contact->phone = current(current($vCard->cell_phone));
+        }
+        if(isset($vCard->work_phone)) {
+          $contact->phone = current(current($vCard->work_phone));
+        }
+        if(isset($vCard->address)) {
+          $contact->address = current(current($vCard->address));
+        }
+        if(isset($vCard->personal_email)) {
+          $contact->email = current(current($vCard->personal_email));
+        }
+        if(isset($vCard->work_email)) {
+          $contact->email = current(current($vCard->work_email));
+        }
+      }
+      else {
+        $contact->first_name = $request->input('firstName');
+        $contact->last_name = $request->input('lastName');
+        $contact->name = $request->input('name');
+        $contact->organization = $request->input('organization');
+        $contact->personal_email = $request->input('personalEmail');
+        $contact->work_email = $request->input('workEmail');
+        $contact->home_phone = $request->input('homePhone');
+        $contact->work_phone = $request->input('workPhone');
+        $contact->cell_phone = $request->input('cellPhone');
+        $contact->birth_date = $request->input('birthDate');
+        // $contact->image = $request->input('image');
+        $contact->creator_id = \Auth::user()->id;
+        $contact->save();
+        // $request->session()->flash('status', 'Contact created!');
+        return redirect()->route('home');
     }
+    $contact->save();
+
+    $contacts = \App\Contact::where('user_id', \Auth::user()->id)->get();
+    return view('home', compact('contacts'));
+  }
+
 
     /**
      * Display the specified resource.
@@ -70,6 +112,8 @@ class ContactController extends Controller
      */
     public function show($id)
     {
+          $contact = \App\Contact::where('id', '=', $id)->first();
+
           // define vcard
           $vcard = new VCard();
 
@@ -80,26 +124,26 @@ class ContactController extends Controller
           // add personal data
           $vcard->addName($lastname, $firstname);
 
-          // add work data
-          $vcard->addOrganization('organization');
-          $vcard->addEmail('personal_email');
-          $vcard->addEmail('work_email');
-          $vcard->addPhoneNumber('home_phone', 'PREF;HOME');
-          $vcard->addPhoneNumber('cell_phone', 'PREF;CELL');
-          $vcard->addPhoneNumber('work_phone', 'PREF;WORK');
-          $vcard->addAddress('address');
+          // add data
+          if ($contact->organization) $vcard->addOrganization('organization');
+          if ($contact->person_email) $vcard->addEmail('personal_email');
+          if ($contact->work_email) $vcard->addEmail('work_email');
+          if ($contact->home_email) $vcard->addPhoneNumber('home_phone', 'PREF;HOME');
+          if ($contact->cell_phone) $vcard->addPhoneNumber('cell_phone', 'PREF;CELL');
+          if ($contact->work_phone) $vcard->addPhoneNumber('work_phone', 'PREF;WORK');
+          if ($contact->address) $vcard->addAddress('address');
 
-          $vcard->addPhoto(__DIR__ . '/landscape.jpeg');
+          // $vcard->addPhoto(__DIR__ . '/landscape.jpeg');
 
           // return vcard as a string
-          //return $vcard->getOutput();
+          // return $vcard->getOutput();
 
           // return vcard as a download
           return $vcard->download();
 
           // save vcard on disk
-          //$vcard->setSavePath('/path/to/directory');
-          //$vcard->save();
+          // $vcard->setSavePath('/path/to/directory');
+          // $vcard->save();
     }
 
     /**
@@ -116,6 +160,7 @@ class ContactController extends Controller
           if ( old('_token') ) {
             $contact->first_name = old('firstName');
             $contact->last_name = old('lastName');
+            $contact->name = old('name');
             $contact->organization = old('organization');
             $contact->personal_email = old('personalEmail');
             $contact->work_email = old('workEmail');
@@ -140,12 +185,12 @@ class ContactController extends Controller
     public function update(Request $request, $id)
     {
       $validatedData = $request->validate([
-          'lastName' => 'required',
-          'firstName' => 'required',
+          'name' => 'required',
       ]);
       $contact = \App\Contacts::find($id);
       $contact->first_name = $request->input('firstName');
       $contact->last_name = $request->input('lastName');
+      $contact->name = $request->input('name');
       $contact->organization = $request->input('organization');
       $contact->personal_email = $request->input('personalEmail');
       $contact->work_email = $request->input('workEmail');
