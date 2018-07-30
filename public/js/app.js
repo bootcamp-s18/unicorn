@@ -13891,7 +13891,7 @@ window.Vue = __webpack_require__(36);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('cardGrid', __webpack_require__(39));
+Vue.component('card-grid', __webpack_require__(39));
 
 var app = new Vue({
   el: '#app'
@@ -47328,6 +47328,25 @@ module.exports = function normalizeComponent (
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
