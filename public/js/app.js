@@ -47369,7 +47369,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    props: ['contactssData'],
+    props: ['contactsData'],
     data: function data() {
         return {
             searchString: '',
@@ -47382,7 +47382,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         filteredContacts: function filteredContacts() {
-            var contact_array = this.contactsData;
+            var contacts_array = this.contactsData;
             var search_string = this.searchString.toLowerCase();
             if (!search_string) {
                 return contacts_array;
@@ -47401,7 +47401,147 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports={render:function(){},staticRenderFns:[]}
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "form-group" }, [
+      _c(
+        "label",
+        { staticClass: "font-weight-bold", attrs: { for: "searchBox" } },
+        [_vm._v("Filter Contacts:")]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.searchString,
+            expression: "searchString"
+          }
+        ],
+        staticClass: "form-control",
+        attrs: {
+          id: "searchBox",
+          type: "text",
+          placeholder: "Search by name..."
+        },
+        domProps: { value: _vm.searchString },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.searchString = $event.target.value
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "button" } },
+        [_vm._v("Create/ Edit Contact")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-warning", attrs: { type: "button" } },
+        [_vm._v("Import")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-success", attrs: { type: "button" } },
+        [_vm._v("Export")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-danger", attrs: { type: "button" } },
+        [_vm._v("Delete")]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "ml-3 my-auto",
+        attrs: { type: "checkbox", name: "selectAll", value: "selectAll" }
+      })
+    ]),
+    _vm._v(" "),
+    _c(
+      "ul",
+      { staticClass: "list-unstyled" },
+      _vm._l(_vm.filteredContacts, function(contact) {
+        return _c("li", { staticClass: "media my-4" }, [
+          _c("img", {
+            staticClass: "mr-3",
+            staticStyle: { height: "128px" },
+            attrs: { src: "", alt: "" }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "media-body" }, [
+            _c("h5", { staticClass: "mt-0 mb-1" }, [
+              _vm._v(_vm._s(contact.first_name + " " + contact.last_name)),
+              _c("small", { staticClass: "justify-content-right" }, [
+                _c("i", [_vm._v("Created on " + _vm._s(contact.updated_at))])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _vm._m(0, true),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-xs-auto" }, [
+              _c(
+                "form",
+                { attrs: { method: "post", action: "/contact/" + contact.id } },
+                [
+                  _c("input", {
+                    attrs: { type: "hidden", name: "_token" },
+                    domProps: { value: _vm.csrf }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { type: "hidden", name: "_method", value: "DELETE" }
+                  }),
+                  _vm._v(" "),
+                  _vm._m(1, true)
+                ]
+              )
+            ])
+          ])
+        ])
+      })
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-xs-auto" }, [
+      _c("button", { staticClass: "btn btn-sm" }, [
+        _c("a", { attrs: { href: "/editContact" } }, [
+          _c("i", { staticClass: "fas fa-pencil-alt text-info" })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "btn btn-sm", attrs: { type: "submit" } },
+      [_c("i", { staticClass: "far fa-trash-alt text-danger" })]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {

@@ -23,9 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $contacts = \App\Contact::orderBy('last_name')->where('creator_id', '=', auth()->user()->id)->get();
-        dd($contacts);
-        return view('home', compact('contact'));
+        return view('home');
         
     }
 }

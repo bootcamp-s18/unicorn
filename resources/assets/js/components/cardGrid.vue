@@ -14,17 +14,17 @@
 
         <ul class="list-unstyled">
             <li class="media my-4" v-for="contact in filteredContacts">
-                <img class="mr-3" src="{{ contact.image }}" alt="{{ contact.firstName }}" style="height:128px;">
+                <img class="mr-3" src="" alt="" style="height:128px;">
                 <div class="media-body">
-                    <h5 class="mt-0 mb-1">{{ contact.name }}<small><i>Created on {{ contact.timestamp }}</i></small></h5>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                    <h5 class="mt-0 mb-1">{{ contact.first_name +' '+contact.last_name }}<small class="justify-content-right"><i>Created on {{ contact.updated_at }}</i></small></h5>
+                    
                 </div>
                 <div class="row">
                     <div class="col-xs-auto">
-                        <button class="btn btn-sm"><a :href="'/home/' + contact.id + '/edit'"><i class="fas fa-pencil-alt text-info"></i></a></button>
+                        <button class="btn btn-sm"><a href="/editContact"><i class="fas fa-pencil-alt text-info"></i></a></button>
                     </div>
                     <div class="col-xs-auto">
-                        <form method="post" :action="'/home/' + contact.id">
+                        <form method="post" :action="'/contact/' + contact.id">
                             <input type="hidden" name="_token" :value="csrf">
                             <input type="hidden" name="_method" value="DELETE">
                             <button class="btn btn-sm" type="submit"><i class="far fa-trash-alt text-danger"></i></button>
@@ -39,7 +39,7 @@
 <script>
     export default {
             
-        props: ['contactssData'],
+        props: ['contactsData'],
         data: () => ({
             searchString: '',
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -49,7 +49,7 @@
         },
         computed: {
             filteredContacts: function() {
-                var contact_array = this.contactsData;
+                var contacts_array = this.contactsData;
                 var search_string = this.searchString.toLowerCase();
                 if (!search_string) {
                     return contacts_array;
