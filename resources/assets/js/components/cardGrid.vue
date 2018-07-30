@@ -14,22 +14,33 @@
 
         <ul class="list-unstyled">
             <li class="media my-4" v-for="contact in filteredContacts">
-                <img class="mr-3" src="" alt="" style="height:128px;">
+                <img class="mr-3" src="/images/img_avatar3.png" alt="" style="height:128px;">
                 <div class="media-body">
-                    <h5 class="mt-0 mb-1">{{ contact.first_name +' '+contact.last_name }}<small class="justify-content-right"><i>Created on {{ contact.updated_at }}</i></small></h5>
-                    
+                    <h5 class="mt-0 mb-1">{{ contact.first_name +' '+contact.last_name }}</h5>
+                    <small class="text-right"><i>Created on {{ contact.updated_at }}</i></small>
                 </div>
+                
                 <div class="row">
-                    <div class="col-xs-auto">
+                    <div class="col-sm-auto">
                         <button class="btn btn-sm"><a href="/editContact"><i class="fas fa-pencil-alt text-info"></i></a></button>
                     </div>
-                    <div class="col-xs-auto">
+                    <div class="col-sm-auto">
                         <form method="post" :action="'/contact/' + contact.id">
                             <input type="hidden" name="_token" :value="csrf">
                             <input type="hidden" name="_method" value="DELETE">
                             <button class="btn btn-sm" type="submit"><i class="far fa-trash-alt text-danger"></i></button>
                         </form>
                     </div>
+                </div>
+                <div>
+                <p v-if="contact.organization">Organization: {{ contact.organization }}</p>
+                <p v-if="contact.work_phone">Work Phone: {{ contact.work_phone }}</p>
+                <p v-if="contact.work_email">Work Email: {{ contact.work_email }}</p>
+                <p v-if="contact.personal_email">Personal Email: {{ contact.personal_email }}</p>
+                <p v-if="contact.cell_phone">Cell Phone: {{ contact.cell_phone }}</p>
+                <p v-if="contact.home_phone">Home Phone: {{ contact.home_phone }}</p>
+                <p v-if="contact.address">Address: {{ contact.address }}</p>
+                <p v-if="contact.birthdate">Birthdate: {{ contact.birthdate }}</p>
                 </div>
             </li>
         </ul>
@@ -55,7 +66,7 @@
                     return contacts_array;
                 }
                 contacts_array = contacts_array.filter(function(item) {
-                    if(item.name.toLowerCase().indexOf(search_string) !== -1) {
+                    if(item.last_name.toLowerCase().indexOf(search_string) !== -1) {
                         return item;
                     }
                 });
