@@ -53,31 +53,31 @@ class ContactController extends Controller
         $file->content = file_get_contents($file->getRealPath());
         $parser = new VCardParser($file->content);
         $vCard = $parser->getCardAtIndex(0);
-        $contact->firstname = $vCard->firstname;
+        $contact->first_name = $vCard->firstname;
 
         if($vCard->lastname) {
-          $contact->lastname = $vCard->lastname;
+          $contact->last_name = $vCard->lastname;
         }
         if(isset($vCard->organization)) {
           $contact->organization = $vCard->organization;
         }
-        if(isset($vCard->home_phone)) {
-          $contact->phone = current(current($vCard->home_phone));
+        if(isset($vCard->phone, PREF;HOME)) {
+          $contact->home_phone = current(current($vCard->phone, PREF;HOME));
         }
-        if(isset($vCard->cell_phone)) {
-          $contact->phone = current(current($vCard->cell_phone));
+        if(isset($vCard->phone, PREF;CELL)) {
+          $contact->cell_phone = current(current($vCard->phone, PREF;CELL));
         }
-        if(isset($vCard->work_phone)) {
-          $contact->phone = current(current($vCard->work_phone));
+        if(isset($vCard->phone, PREF;WORK)) {
+          $contact->work_phone = current(current($vCard->phone, PREF;WORK));
         }
         if(isset($vCard->address)) {
           $contact->address = current(current($vCard->address));
         }
         if(isset($vCard->personal_email)) {
-          $contact->email = current(current($vCard->personal_email));
+          $contact->personal_email = current(current($vCard->personal_email));
         }
         if(isset($vCard->work_email)) {
-          $contact->email = current(current($vCard->work_email));
+          $contact->work_email = current(current($vCard->work_email));
         }
       }
       else {
