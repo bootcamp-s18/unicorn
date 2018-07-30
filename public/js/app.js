@@ -13891,7 +13891,7 @@ window.Vue = __webpack_require__(36);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('cardGrid', __webpack_require__(39));
+Vue.component('card-grid', __webpack_require__(39));
 
 var app = new Vue({
   el: '#app'
@@ -47344,6 +47344,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -47366,73 +47385,78 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-group" }, [
-      _c("div", { staticClass: "card" }, [
+    return _c("ul", { staticClass: "list-unstyled" }, [
+      _c("li", { staticClass: "media border p-3" }, [
         _c("img", {
-          staticClass: "card-img-top",
-          attrs: { src: "", alt: "Card image cap" }
+          staticClass: "mr-3 rounded-circle",
+          staticStyle: { width: "60px", height: "60px" },
+          attrs: { src: "/images/christianRock.png", alt: "placeholder" }
         }),
         _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c("h5", { staticClass: "card-title" }, [_vm._v("Card title")]),
+        _c("div", { staticClass: "media-body" }, [
+          _c("h4", [
+            _vm._v("John Doe "),
+            _c("small", [_c("i", [_vm._v("Posted on February 19, 2016")])])
+          ]),
           _vm._v(" "),
-          _c("p", { staticClass: "card-text" }, [
-            _vm._v(
-              "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-footer" }, [
-          _c("small", { staticClass: "text-muted" }, [
-            _vm._v("Last updated 3 mins ago")
-          ])
+          _c("p", [_vm._v("Lorem ipsum...")])
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "card" }, [
+      _c("li", { staticClass: "media" }, [
         _c("img", {
-          staticClass: "card-img-top",
-          attrs: { src: "", alt: "Card image cap" }
+          staticClass: "mr-3 rounded-circle",
+          staticStyle: { height: "128px" },
+          attrs: { src: "", alt: "Generic placeholder image" }
         }),
         _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c("h5", { staticClass: "card-title" }, [_vm._v("Card title")]),
-          _vm._v(" "),
-          _c("p", { staticClass: "card-text" }, [
-            _vm._v(
-              "This card has supporting text below as a natural lead-in to additional content."
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-footer" }, [
-          _c("small", { staticClass: "text-muted" }, [
-            _vm._v("Last updated 3 mins ago")
-          ])
+        _c("div", { staticClass: "media-body" }, [
+          _c("h5", { staticClass: "mt-0 mb-1" }, [
+            _vm._v("List-based media object")
+          ]),
+          _vm._v(
+            "\n            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n        "
+          )
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "card" }, [
+      _c("li", { staticClass: "media my-4" }, [
         _c("img", {
-          staticClass: "card-img-top",
-          attrs: { src: "", alt: "Card image cap" }
+          staticClass: "mr-3",
+          staticStyle: { height: "128px" },
+          attrs: {
+            src: "/images/sharkVision2.jpg",
+            alt: "Generic placeholder image"
+          }
         }),
         _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c("h5", { staticClass: "card-title" }, [_vm._v("Card title")]),
-          _vm._v(" "),
-          _c("p", { staticClass: "card-text" }, [
-            _vm._v(
-              "This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action."
-            )
-          ])
-        ]),
+        _c("div", { staticClass: "media-body" }, [
+          _c("h5", { staticClass: "mt-0 mb-1" }, [
+            _vm._v("List-based media object")
+          ]),
+          _vm._v(
+            "\n            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n        "
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "media" }, [
+        _c("img", {
+          staticClass: "mr-3",
+          staticStyle: { height: "128px" },
+          attrs: {
+            src: "/images/VinDimitri.JPG",
+            alt: "Generic placeholder image"
+          }
+        }),
         _vm._v(" "),
-        _c("div", { staticClass: "card-footer" }, [
-          _c("small", { staticClass: "text-muted" }, [
-            _vm._v("Last updated 3 mins ago")
-          ])
+        _c("div", { staticClass: "media-body" }, [
+          _c("h5", { staticClass: "mt-0 mb-1" }, [
+            _vm._v("List-based media object")
+          ]),
+          _vm._v(
+            "\n            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n        "
+          )
         ])
       ])
     ])
