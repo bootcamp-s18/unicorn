@@ -22,7 +22,7 @@ class ContactController extends Controller
     public function index()
     {
         $contact = \App\Contact::orderBy('last_name')->where('creator_id', '=', auth()->user()->id)->get();
-        return view('home', compact('contact'));
+        return view('contact', compact('contact'));
     }
 
     /**
@@ -126,7 +126,7 @@ class ContactController extends Controller
 
           // add data
           if ($contact->organization) $vcard->addOrganization('organization');
-          if ($contact->person_email) $vcard->addEmail('personal_email');
+          if ($contact->personal_email) $vcard->addEmail('personal_email');
           if ($contact->work_email) $vcard->addEmail('work_email');
           if ($contact->home_email) $vcard->addPhoneNumber('home_phone', 'PREF;HOME');
           if ($contact->cell_phone) $vcard->addPhoneNumber('cell_phone', 'PREF;CELL');
@@ -215,6 +215,6 @@ class ContactController extends Controller
           $contact=\App\Contact::find($id);
           $contact->delete();
           $request->session()->flash('status', 'Contact deleted!');
-          return redirect()->route('/');
+          return redirect()->route('contact');
     }
 }
