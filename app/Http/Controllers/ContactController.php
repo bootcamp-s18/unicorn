@@ -21,6 +21,7 @@ class ContactController extends Controller
     {
         $contacts = \App\Contact::orderBy('last_name')->where('creator_id', '=', auth()->user()->id)->get();
         return view('home', compact('contact'));
+        dd($contacts);
     }
 
     /**
