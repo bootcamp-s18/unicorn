@@ -47366,6 +47366,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -47388,7 +47399,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return contacts_array;
             }
             contacts_array = contacts_array.filter(function (item) {
-                if (item.name.toLowerCase().indexOf(search_string) !== -1) {
+                if (item.last_name.toLowerCase().indexOf(search_string) !== -1) {
                     return item;
                 }
             });
@@ -47477,22 +47488,23 @@ var render = function() {
           _c("img", {
             staticClass: "mr-3",
             staticStyle: { height: "128px" },
-            attrs: { src: "", alt: "" }
+            attrs: { src: "/images/img_avatar3.png", alt: "" }
           }),
           _vm._v(" "),
           _c("div", { staticClass: "media-body" }, [
             _c("h5", { staticClass: "mt-0 mb-1" }, [
-              _vm._v(_vm._s(contact.first_name + " " + contact.last_name)),
-              _c("small", { staticClass: "justify-content-right" }, [
-                _c("i", [_vm._v("Created on " + _vm._s(contact.updated_at))])
-              ])
+              _vm._v(_vm._s(contact.first_name + " " + contact.last_name))
+            ]),
+            _vm._v(" "),
+            _c("small", { staticClass: "text-right" }, [
+              _c("i", [_vm._v("Created on " + _vm._s(contact.updated_at))])
             ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
             _vm._m(0, true),
             _vm._v(" "),
-            _c("div", { staticClass: "col-xs-auto" }, [
+            _c("div", { staticClass: "col-sm-auto" }, [
               _c(
                 "form",
                 { attrs: { method: "post", action: "/contact/" + contact.id } },
@@ -47510,6 +47522,44 @@ var render = function() {
                 ]
               )
             ])
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            contact.organization
+              ? _c("p", [
+                  _vm._v("Organization: " + _vm._s(contact.organization))
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            contact.work_phone
+              ? _c("p", [_vm._v("Work Phone: " + _vm._s(contact.work_phone))])
+              : _vm._e(),
+            _vm._v(" "),
+            contact.work_email
+              ? _c("p", [_vm._v("Work Email: " + _vm._s(contact.work_email))])
+              : _vm._e(),
+            _vm._v(" "),
+            contact.personal_email
+              ? _c("p", [
+                  _vm._v("Personal Email: " + _vm._s(contact.personal_email))
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            contact.cell_phone
+              ? _c("p", [_vm._v("Cell Phone: " + _vm._s(contact.cell_phone))])
+              : _vm._e(),
+            _vm._v(" "),
+            contact.home_phone
+              ? _c("p", [_vm._v("Home Phone: " + _vm._s(contact.home_phone))])
+              : _vm._e(),
+            _vm._v(" "),
+            contact.address
+              ? _c("p", [_vm._v("Address: " + _vm._s(contact.address))])
+              : _vm._e(),
+            _vm._v(" "),
+            contact.birthdate
+              ? _c("p", [_vm._v("Birthdate: " + _vm._s(contact.birthdate))])
+              : _vm._e()
           ])
         ])
       })
@@ -47521,7 +47571,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xs-auto" }, [
+    return _c("div", { staticClass: "col-sm-auto" }, [
       _c("button", { staticClass: "btn btn-sm" }, [
         _c("a", { attrs: { href: "/editContact" } }, [
           _c("i", { staticClass: "fas fa-pencil-alt text-info" })
