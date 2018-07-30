@@ -61,14 +61,14 @@ class ContactController extends Controller
         if(isset($vCard->organization)) {
           $contact->organization = $vCard->organization;
         }
-        if(isset($vCard->phone, PREF;HOME)) {
-          $contact->home_phone = current(current($vCard->phone, PREF;HOME));
+        if(isset($vCard->phone)) {
+          $contact->home_phone = current(current($vCard->home_phone));
         }
-        if(isset($vCard->phone, PREF;CELL)) {
-          $contact->cell_phone = current(current($vCard->phone, PREF;CELL));
+        if(isset($vCard->cell_phone)) {
+          $contact->cell_phone = current(current($vCard->cell_phone));
         }
-        if(isset($vCard->phone, PREF;WORK)) {
-          $contact->work_phone = current(current($vCard->phone, PREF;WORK));
+        if(isset($vCard->work_phone)) {
+          $contact->work_phone = current(current($vCard->work_phone));
         }
         if(isset($vCard->address)) {
           $contact->address = current(current($vCard->address));
