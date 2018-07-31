@@ -214,7 +214,6 @@ class ContactController extends Controller
     {
           $contact=\App\Contact::find($id);
           $contact->delete();
-          $request->session()->flash('status', 'Contact deleted!');
           return redirect()->route('contact');
     }
 }
