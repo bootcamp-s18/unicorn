@@ -155,7 +155,7 @@ class ContactController extends Controller
     public function edit($id)
     {
           $settings = \App\SiteSettings::first();
-          $contact = \App\Group::find($id);
+          $contact = \App\Contact::find($id);
 
           if ( old('_token') ) {
             $contact->first_name = old('firstName');
