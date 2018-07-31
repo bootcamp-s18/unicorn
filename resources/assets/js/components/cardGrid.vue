@@ -5,10 +5,8 @@
         <div class="form-group">
             <label for="searchBox" class="font-weight-bold">Filter Contacts:</label>
             <input id="searchBox" class="form-control" type="text" v-model="searchString" placeholder="Search by name..." />
-            <button class="btn btn-primary" type="button">Create/ Edit Contact</button> 
+            <button class="btn btn-primary" type="button">Create Contact</button> 
             <button class="btn btn-warning" type="button">Import</button>
-            <button class="btn btn-success" type="button">Export</button>
-            <button class="btn btn-danger" type="button">Delete</button>
             <input class="ml-3 my-auto" type="checkbox" name="selectAll" value="selectAll">
         </div>
 
