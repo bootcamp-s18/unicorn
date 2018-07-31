@@ -5,9 +5,11 @@
         <div class="form-group">
             <label for="searchBox" class="font-weight-bold">Filter Contacts:</label>
             <input id="searchBox" class="form-control" type="text" v-model="searchString" placeholder="Search by name..." />
-            <button class="btn btn-primary" type="button">Create Contact</button> 
-            <button class="btn btn-warning" type="button">Import</button>
-            <input class="ml-3 my-auto" type="checkbox" name="selectAll" value="selectAll">
+            <button class="btn btn-primary" type="button"><a :href="'/contact/' + contact.id + '/edit'"></a>Create Contact</button> 
+            <!-- <button class="btn btn-warning" type="button">Import</button> -->
+            <!-- <button class="btn btn-success" type="button">Export</button> -->
+            <!-- <button class="btn btn-danger" type="button">Delete</button> -->
+            <!-- <input class="ml-3 my-auto" type="checkbox" name="selectAll" value="selectAll"> -->
         </div>
 
         <ul class="list-unstyled">
@@ -21,10 +23,10 @@
                 <div class="row">
                     <div class="col-sm-auto">
                         <button class="btn btn-sm"><a :href="'/contact/' + contact.id + '/edit'"><i class="fas fa-pencil-alt text-info"></i></a></button>
+                        <button class="btn btn-success" type="button">Export</button>
                     </div>
                     <div class="col-sm-auto">
                         <form method="post" :action="'/contact/' + contact.id">
-
                             <input type="hidden" name="_token" :value="csrf">
                             <input type="hidden" name="_method" value="DELETE">
                             <button class="btn btn-sm" type="submit"><i class="far fa-trash-alt text-danger"></i></button>
