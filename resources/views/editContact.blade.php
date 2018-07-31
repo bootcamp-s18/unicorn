@@ -80,11 +80,11 @@
 
         <!-- dropdown link -->
         <div id="editMenu" class="container text-center mt-1 mb-1">
-        <div class="dropdown show">
+        <div class="dropdown">
           <a class="btn btn-sm btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-plus"></i> Add More
           </a>
-          <div class="dropdown-menu text-center mt-1 show" aria-labelledby="dropdownMenuLink">
+          <div class="dropdown-menu text-center mt-1" aria-labelledby="dropdownMenuLink">
             <a class="dropdown-item" href="#">Email</a>
             <a class="dropdown-item" href="#">Address</a>
             <a class="dropdown-item" href="#">Birthday</a>

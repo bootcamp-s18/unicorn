@@ -20,6 +20,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/contact', 'ContactController');
-Route::get('/editContact', function () {
-    return view('editContact');
-});
+

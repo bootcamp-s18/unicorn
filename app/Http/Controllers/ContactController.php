@@ -22,7 +22,7 @@ class ContactController extends Controller
     public function index()
     {
         $contact = \App\Contact::orderBy('last_name')->where('creator_id', '=', auth()->user()->id)->get();
-        return view('\contact', compact('contact'));
+        return view('contact', compact('contact'));
     }
 
     /**
@@ -154,6 +154,7 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
+        $contact = \App\Contact::find($id);
 
           if ( old('_token') ) {
             $contact->first_name = old('firstName');
@@ -169,8 +170,8 @@ class ContactController extends Controller
             // $contact->image = old('image');
       }
 
-          $contact = \App\Contact::find($id);
-          return view('\editContact', compact('contact'));
+          
+          return view('editContact', compact('contact'));
     }
 
     /**
@@ -212,6 +213,7 @@ class ContactController extends Controller
     {
           $contact=\App\Contact::find($id);
           $contact->delete();
-          return redirect()->route('\contact');
+          $contact = \App\Contact::orderBy('last_name')->where('creator_id', '=', auth()->user()->id)->get();
+          return view('contact', compact('contact'));
     }
 }

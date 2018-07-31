@@ -22,11 +22,11 @@
                 
                 <div class="row">
                     <div class="col-sm-auto">
-                        <button class="btn btn-sm"><a href="/editContact"><i class="fas fa-pencil-alt text-info"></i></a></button>
+                        <button class="btn btn-sm"><a :href="'/contact/' + contact.id + '/edit'"><i class="fas fa-pencil-alt text-info"></i></a></button>
                     </div>
                     <div class="col-sm-auto">
                         <form method="post" :action="'/contact/' + contact.id">
-                        
+
                             <input type="hidden" name="_token" :value="csrf">
                             <input type="hidden" name="_method" value="DELETE">
                             <button class="btn btn-sm" type="submit"><i class="far fa-trash-alt text-danger"></i></button>
