@@ -22,7 +22,7 @@ class ContactController extends Controller
     public function index()
     {
         $contact = \App\Contact::orderBy('last_name')->where('creator_id', '=', auth()->user()->id)->get();
-        return view('contact', compact('contact'));
+        return view('\contact', compact('contact'));
     }
 
     /**
@@ -100,7 +100,7 @@ class ContactController extends Controller
     $contact->save();
 
     $contacts = \App\Contact::where('user_id', \Auth::user()->id)->get();
-    return view('home', compact('contacts'));
+    return view('\contact', compact('contacts'));
   }
 
 
@@ -172,7 +172,7 @@ class ContactController extends Controller
       }
 
           $contact = \App\Contacts::find($id);
-          return view('home', compact('contact'));
+          return view('\contact', compact('contact'));
     }
 
     /**
@@ -201,7 +201,7 @@ class ContactController extends Controller
       // $contact->image = $request->input('image');
       $contact->save();
       // $request->session()->flash('status', 'Contact created!');
-      return redirect()->route('home');
+      return redirect()->route('\contact');
     }
 
     /**
@@ -214,7 +214,6 @@ class ContactController extends Controller
     {
           $contact=\App\Contact::find($id);
           $contact->delete();
-          $request->session()->flash('status', 'Contact deleted!');
-          return redirect()->route('contact');
+          return redirect()->route('\contact');
     }
 }
