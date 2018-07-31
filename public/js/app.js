@@ -47377,6 +47377,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -47491,7 +47492,7 @@ var render = function() {
             attrs: { src: "/images/img_avatar3.png", alt: "" }
           }),
           _vm._v(" "),
-          _c("div", { staticClass: "media-body" }, [
+          _c("div", { staticClass: "media-body col-" }, [
             _c("h5", { staticClass: "mt-0 mb-1" }, [
               _vm._v(_vm._s(contact.first_name + " " + contact.last_name))
             ]),
@@ -47502,7 +47503,15 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
-            _vm._m(0, true),
+            _c("div", { staticClass: "col-sm-auto" }, [
+              _c("button", { staticClass: "btn btn-sm" }, [
+                _c(
+                  "a",
+                  { attrs: { href: "/contact/" + contact.id + "/edit" } },
+                  [_c("i", { staticClass: "fas fa-pencil-alt text-info" })]
+                )
+              ])
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-sm-auto" }, [
               _c(
@@ -47518,7 +47527,7 @@ var render = function() {
                     attrs: { type: "hidden", name: "_method", value: "DELETE" }
                   }),
                   _vm._v(" "),
-                  _vm._m(1, true)
+                  _vm._m(0, true)
                 ]
               )
             ])
@@ -47567,18 +47576,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-auto" }, [
-      _c("button", { staticClass: "btn btn-sm" }, [
-        _c("a", { attrs: { href: "/editContact" } }, [
-          _c("i", { staticClass: "fas fa-pencil-alt text-info" })
-        ])
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
