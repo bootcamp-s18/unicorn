@@ -154,8 +154,6 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-          $settings = \App\SiteSettings::first();
-          $contact = \App\Group::find($id);
 
           if ( old('_token') ) {
             $contact->first_name = old('firstName');
@@ -171,8 +169,8 @@ class ContactController extends Controller
             // $contact->image = old('image');
       }
 
-          $contact = \App\Contacts::find($id);
-          return view('\contact', compact('contact'));
+          $contact = \App\Contact::find($id);
+          return view('\editContact', compact('contact'));
     }
 
     /**
@@ -187,7 +185,7 @@ class ContactController extends Controller
       $validatedData = $request->validate([
           'name' => 'required',
       ]);
-      $contact = \App\Contacts::find($id);
+      $contact = \App\Contact::find($id);
       $contact->first_name = $request->input('firstName');
       $contact->last_name = $request->input('lastName');
       $contact->name = $request->input('name');

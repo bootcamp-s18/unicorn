@@ -15,7 +15,7 @@
         <ul class="list-unstyled">
             <li class="media my-4" v-for="contact in filteredContacts">
                 <img class="mr-3" src="/images/img_avatar3.png" alt="" style="height:128px;">
-                <div class="media-body">
+                <div class="media-body col-">
                     <h5 class="mt-0 mb-1">{{ contact.first_name +' '+contact.last_name }}</h5>
                     <small class="text-right"><i>Created on {{ contact.updated_at }}</i></small>
                 </div>
@@ -26,6 +26,7 @@
                     </div>
                     <div class="col-sm-auto">
                         <form method="post" :action="'/contact/' + contact.id">
+                        
                             <input type="hidden" name="_token" :value="csrf">
                             <input type="hidden" name="_method" value="DELETE">
                             <button class="btn btn-sm" type="submit"><i class="far fa-trash-alt text-danger"></i></button>
